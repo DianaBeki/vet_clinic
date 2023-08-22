@@ -85,7 +85,7 @@ Example commands:
 
 ```sh
   cd my-folder
-  git clone https://github.com/cosywasswa/Vet-Clinic.git
+  git clone git@github.com:DianaBeki/vet_clinic.git
 ```
 --->
 <!--
@@ -123,10 +123,9 @@ To run tests, run the following command:
 ## 👥 Authors <a name="authors"></a>
 
 👤 **Diana Beki**
-
-- GitHub: [@rbd3](https://github.com/rbd3)
-- Twitter: [@Narson321](https://twitter.com/@Narson321)
-- LinkedIn: [@Andry Narson Rabedesana](https://linkedin.com/in/andry-rabedesana)
+- GitHub: [@Github](https://github.com/DianaBeki)
+- Twitter: [@Twitter](https://twitter.com/home)
+- LinkedIn: [@Andry Narson Rabedesana](https://www.linkedin.com/in/diana-beki/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -145,7 +144,7 @@ To run tests, run the following command:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page]().
+Feel free to check the [issues page](https://github.com/DianaBeki/vet_clinic/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
