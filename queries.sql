@@ -24,8 +24,8 @@ SELECT * FROM animals;
 
 BEGIN;
 DELETE FROM animals;
-ROLLBACK;
 SELECT * FROM animals;
+ROLLBACK;
 
 BEGIN;
 DELETE FROM animals WHERE date_of_birth > '2022-01-01';
@@ -34,7 +34,7 @@ UPDATE animals SET weight_kg = weight_kg * -1;
 ROLLBACK TO SP1;
 UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg<0;
  SELECT * FROM animals;
-
+ COMMIT;
  SELECT COUNT(*) FROM animals;
  SELECT COUNT(*) FROM animals WHERE escape_attempts=0;
  SELECT AVG(weight_kg) FROM animals;
