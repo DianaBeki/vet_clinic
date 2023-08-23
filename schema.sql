@@ -11,4 +11,19 @@ CREATE TABLE animals(
     PRIMARY KEY(id)
     );
 
+CREATE TABLE owners(
+    id int GENERATED ALWAYS AS IDENTITY,
+    full_name VARCHAR,
+    age int,
+    PRIMARY KEY(id)
+    );
+
+CREATE TABLE species(
+    id int GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR,
+    PRIMARY KEY(id)
+    );
+ALTER TABLE animals  DROP COLUMN species;
+ALTER TABLE animals ADD COLUMN species_id INT REFERENCES species(id);
+ALTER TABLE animals ADD COLUMN owner_id INT REFERENCES owners(id);
  
