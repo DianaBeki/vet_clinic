@@ -41,3 +41,11 @@ UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg<0;
  SELECT neutered, MAX(escape_attempts) AS max_escape_attempts FROM animals GROUP BY neutered;
  SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight FROM animals GROUP BY species;
  SELECT species, AVG(escape_attempts) AS avg_escape_attempts FROM animals WHERE EXTRACT(YEAR FROM date_of_birth) BETWEEN 1990 AND 2000 GROUP BY species;
+
+ SELECT animals.name,owners.full_name FROM animals INNER JOIN owners ON animals.owner_id=owners.id WHERE owners.full_name='Melody Pond';
+ SELECT animals.name,species.name FROM animals JOIN species ON animals.species_id=species.id WHERE species.name='Pokemon';
+ SELECT owners.full_name,animals.name FROM animals RIGHT JOIN owners ON animals.owner_id=owners.id;
+ SELECT species.name,COUNT(animals.name) FROM animals JOIN species ON animals.species_id=species.id GROUP BY species.name;
+ SELECT animals.name, species.name, owners.full_name FROM animals JOIN species ON animals.species_id = species.id JOIN owners ON animals.owner_id = owners.id WHERE species.name = 'Digimon' AND owners.full_name = 'Jennifer Orwell';
+ SELECT animals.name,owners.full_name FROM animals JOIN owners ON animals.owner_id=owners.id WHERE owners.full_name='Dean Winchester' AND animals.escape_attempts=0;
+ SELECT owners.full_name, COUNT(animals.name) AS num_of_animals FROM animals JOIN owners ON animals.owner_id = owners.id GROUP BY owners.full_name ORDER BY num_of_animals DESC LIMIT 1;
