@@ -31,6 +31,11 @@ UPDATE animals SET owner_id = o.id FROM owners o WHERE animals.name = 'Blossom' 
 UPDATE animals SET owner_id = o.id FROM owners o WHERE animals.name = 'Angemon' AND o.full_name = 'Dean Winchester';
 UPDATE animals SET owner_id = o.id FROM owners o WHERE animals.name = 'Boarmon' AND o.full_name = 'Dean Winchester';
 
+INSERT INTO vets(name,age,date_of_graduation) VALUES('William Tatcher',45,'2000-04-23');
+INSERT INTO vets(name,age,date_of_graduation) VALUES('Maisy Smith',26,'2019-01-17');
+INSERT INTO vets(name,age,date_of_graduation) VALUES('Stephanie Mendez',64,'1981-05-04');
+INSERT INTO vets(name,age,date_of_graduation) VALUES('Jack Harkness',38,'2008-06-08');
+
 INSERT INTO specializations (vet_id, species_id) VALUES(
   (SELECT id FROM vets WHERE name = 'William Tatcher'), 
   (SELECT id FROM species WHERE name = 'Pokemon')
@@ -86,7 +91,6 @@ INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM 
 INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Plantmon'),'2019-12-21',
 (SELECT id FROM vets WHERE name = 'Maisy Smith')
 );
-
 INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Plantmon'),'2020-08-10',
 (SELECT id FROM vets WHERE name = 'William Tatcher')
 );
