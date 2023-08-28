@@ -31,7 +31,8 @@ UPDATE animals SET owner_id = o.id FROM owners o WHERE animals.name = 'Blossom' 
 UPDATE animals SET owner_id = o.id FROM owners o WHERE animals.name = 'Angemon' AND o.full_name = 'Dean Winchester';
 UPDATE animals SET owner_id = o.id FROM owners o WHERE animals.name = 'Boarmon' AND o.full_name = 'Dean Winchester';
 
--- Day 5
+--- performance-audit ---
+
 INSERT INTO visits (animal_id, vet_id, date_of_visit)
  SELECT * FROM (SELECT id FROM animals) animal_ids,
   (SELECT id FROM vets) 

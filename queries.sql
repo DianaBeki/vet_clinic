@@ -50,10 +50,6 @@ UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg<0;
  SELECT animals.name,owners.full_name FROM animals JOIN owners ON animals.owner_id=owners.id WHERE owners.full_name='Dean Winchester' AND animals.escape_attempts=0;
  SELECT owners.full_name, COUNT(animals.name) AS num_of_animals FROM animals JOIN owners ON animals.owner_id = owners.id GROUP BY owners.full_name ORDER BY num_of_animals DESC LIMIT 1;
 
-SELECT COUNT(*) FROM visits where animal_id = 4;
-SELECT * FROM visits where vet_id = 2;
-SELECT * FROM owners where email = 'owner_18327@mail.com'
-
 EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4; 
 EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
 EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
