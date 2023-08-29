@@ -1,3 +1,4 @@
+-- schema_based_on_diagram
 CREATE DATABASE clinic;
 
 CREATE TABLE patients(
@@ -46,5 +47,5 @@ CREATE TABLE medical_histories_treatments(
 id INT GENERATED ALWAYS AS IDENTITY,
 medical_histories_id INT REFERENCES medical_histories(id),
 treatment_id INT REFERENCES treatments(id),
-PRIMARY KEY(id);
+PRIMARY KEY(id)
 );
