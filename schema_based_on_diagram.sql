@@ -8,10 +8,9 @@ date_of_birth DATE,
 PRIMARY KEY(id)
 );
 
-
 CREATE TABLE medical_histories(
 id INT GENERATED ALWAYS AS IDENTITY,
-admited_at TIMESTAMP,
+admitted_at TIMESTAMP,
 patient_id INT REFERENCES patients(id),
 status VARCHAR,
 PRIMARY KEY(id)
@@ -28,7 +27,7 @@ CREATE TABLE invoices(
 id INT GENERATED ALWAYS AS IDENTITY,
 total_amount DECIMAL,
 generated_at TIMESTAMP,
-payed_at TIMESTAMP,
+paid_at TIMESTAMP,
 medical_history_id INT REFERENCES medical_histories(id),
 PRIMARY KEY(id)
 );
@@ -45,7 +44,12 @@ PRIMARY KEY(id)
 
 CREATE TABLE medical_histories_treatments(
 id INT GENERATED ALWAYS AS IDENTITY,
-medical_histories_id INT REFERENCES medical_histories(id),
+medical_history_id INT REFERENCES medical_histories(id),
 treatment_id INT REFERENCES treatments(id),
 PRIMARY KEY(id)
 );
+
+-- Add FK indexes for medical_history_id and treatment_id in medical_histories_treatments table
+CREATE INDEX idx_medical_histories_treatments_medical_history_id ON medical_histories_treatments(medical_histories_id);
+CREATE INDEX idx_medical_histories_treatments_treatment_id ON medical_histories_treatments(treatment_id);
+
