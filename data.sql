@@ -31,106 +31,12 @@ UPDATE animals SET owner_id = o.id FROM owners o WHERE animals.name = 'Blossom' 
 UPDATE animals SET owner_id = o.id FROM owners o WHERE animals.name = 'Angemon' AND o.full_name = 'Dean Winchester';
 UPDATE animals SET owner_id = o.id FROM owners o WHERE animals.name = 'Boarmon' AND o.full_name = 'Dean Winchester';
 
-INSERT INTO vets(name,age,date_of_graduation) VALUES('William Tatcher',45,'2000-04-23');
-INSERT INTO vets(name,age,date_of_graduation) VALUES('Maisy Smith',26,'2019-01-17');
-INSERT INTO vets(name,age,date_of_graduation) VALUES('Stephanie Mendez',64,'1981-05-04');
-INSERT INTO vets(name,age,date_of_graduation) VALUES('Jack Harkness',38,'2008-06-08');
+--- performance-audit ---
 
-INSERT INTO specializations (vet_id, species_id) VALUES(
-  (SELECT id FROM vets WHERE name = 'William Tatcher'), 
-  (SELECT id FROM species WHERE name = 'Pokemon')
-);
+INSERT INTO visits (animal_id, vet_id, date_of_visit)
+ SELECT * FROM (SELECT id FROM animals) animal_ids,
+  (SELECT id FROM vets) 
+  vets_ids, generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours')
+   visit_timestamp;
 
-INSERT INTO specializations (vet_id, species_id) VALUES(
-  (SELECT id FROM vets WHERE name = 'Stephanie Mendez'), 
-  (SELECT id FROM species WHERE name = 'Digimon')
-);
-
-INSERT INTO specializations (vet_id, species_id) VALUES(
-  (SELECT id FROM vets WHERE name = 'Stephanie Mendez'), 
-  (SELECT id FROM species WHERE name = 'Pokemon')
-);
-
-INSERT INTO specializations (vet_id, species_id) VALUES(
-  (SELECT id FROM vets WHERE name = 'Jack Harkness'), 
-  (SELECT id FROM species WHERE name = 'Digimon')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Agumon'),'2020-05-24',
-(SELECT id FROM vets WHERE name = 'William Tatcher')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Agumon'),'2020-07-22',
-(SELECT id FROM vets WHERE name = 'Stephanie Mendez')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Gabumon'),'2021-02-02',
-(SELECT id FROM vets WHERE name = 'Jack Harkness')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Pikachu'),'2020-01-05',
-(SELECT id FROM vets WHERE name = 'Maisy Smith')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Pikachu'),'2020-03-08',
-(SELECT id FROM vets WHERE name = 'Maisy Smith')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Pikachu'),'2020-05-14',
-(SELECT id FROM vets WHERE name = 'Maisy Smith')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Devimon'),'2021-05-04',
-(SELECT id FROM vets WHERE name = 'Stephanie Mendez')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Charmander'),'2021-02-24',
-(SELECT id FROM vets WHERE name = 'Jack Harkness')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Plantmon'),'2019-12-21',
-(SELECT id FROM vets WHERE name = 'Maisy Smith')
-);
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Plantmon'),'2020-08-10',
-(SELECT id FROM vets WHERE name = 'William Tatcher')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Plantmon'),'2021-04-07',
-(SELECT id FROM vets WHERE name = 'Maisy Smith')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Squirtle'),'2019-09-29',
-(SELECT id FROM vets WHERE name = 'Stephanie Mendez')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Angemon'),'2020-10-03',
-(SELECT id FROM vets WHERE name = 'Jack Harkness')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Angemon'),'2020-11-04',
-(SELECT id FROM vets WHERE name = 'Jack Harkness')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Boarmon'),'2019-01-24',
-(SELECT id FROM vets WHERE name = 'Maisy Smith')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Boarmon'),'2019-05-15',
-(SELECT id FROM vets WHERE name = 'Maisy Smith')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Boarmon'),'2020-02-27',
-(SELECT id FROM vets WHERE name = 'Maisy Smith')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Boarmon'),'2020-08-03',
-(SELECT id FROM vets WHERE name = 'Maisy Smith')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Blossom'),'2020-05-24',
-(SELECT id FROM vets WHERE name = 'Stephanie Mendez')
-);
-
-INSERT INTO visits(animal_id, date_of_the_visit, vet_id) VALUES((SELECT id FROM animals WHERE name = 'Blossom'),'2021-01-11',
-(SELECT id FROM vets WHERE name = 'William Tatcher')
-);
+insert into owners (full_name, email) select 'Owner ' || generate_series(1,2500000), 'owner_' || generate_series(1,2500000) || '@mail.com';

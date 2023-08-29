@@ -50,50 +50,6 @@ UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg<0;
  SELECT animals.name,owners.full_name FROM animals JOIN owners ON animals.owner_id=owners.id WHERE owners.full_name='Dean Winchester' AND animals.escape_attempts=0;
  SELECT owners.full_name, COUNT(animals.name) AS num_of_animals FROM animals JOIN owners ON animals.owner_id = owners.id GROUP BY owners.full_name ORDER BY num_of_animals DESC LIMIT 1;
 
-SELECT animals.name FROM visits JOIN animals ON visits.animal_id=animals.id 
- JOIN vets ON visits.vet_id=vets.id WHERE vets.name='William Tatcher' ORDER BY (visits.date_of_the_visit) DESC LIMIT 1;
-
-SELECT DISTINCT A.name FROM animals A
-JOIN visits V ON A.id = V.animal_id
-WHERE V.vet_id = (SELECT id FROM vets WHERE name = 'Stephanie Mendez');
-
-SELECT v.name, species.name FROM specializations s
-LEFT JOIN vets v ON s.vet_id=v.id
-JOIN species ON s.species_id=species.id;
-
-SELECT a.name, v.date_of_the_visit FROM animals a
-JOIN  visits v ON a.id=v.animal_id
-JOIN vets ON v.vet_id=vets.id WHERE vets.name='Stephanie Mendez'
-AND v.date_of_the_visit BETWEEN '2020-04-01' AND '2020-08-30';
-
-SELECT a.name, COUNT(v.date_of_the_visit)
-FROM animals a
-JOIN visits v ON a.id=v.animal_id
-GROUP BY a.name 
-ORDER BY COUNT(v.date_of_the_visit) DESC LIMIT 1;
-
-SELECT a.name, MIN(v.date_of_the_visit) FROM animals a
-JOIN  visits v ON a.id=v.animal_id
-JOIN vets ON v.vet_id=vets.id WHERE vets.name='Maisy Smith'
-GROUP BY a.name
-ORDER BY MIN(v.date_of_the_visit) ASC LIMIT 1;
-
-SELECT A.name AS animal_name, A.date_of_birth, A.escape_attempts, A.weight_kg, VT.name AS vet_name, VT.age AS vet_age, MAX(V.date_of_the_visit) AS most_recent_visIt_date 
-FROM animals A
-JOIN visits V ON A.id = V.animal_id
-JOIN vets VT ON VT.id = V.vet_id 
-GROUP BY VT.name, A.name, A.date_of_birth, A.escape_attempts, A.weight_kg, VT.age  ORDER BY MAX(V.date_of_the_visit) DESC LIMIT 1;
-
-SELECT COUNT(*) FROM visits V
-WHERE V.vet_id = ( SELECT id FROM vets VT JOIN specializations S ON VT.id != S.vet_id LIMIT 1);
-
-SELECT species.name, COUNT(*) AS num_visits
-FROM visits v
-JOIN animals a ON v.animal_id = a.id
-JOIN vets vt ON v.vet_id = vt.id
-JOIN species ON a.species_id = species.id
-WHERE vt.name = 'Maisy Smith'
-GROUP BY species.name
-ORDER BY num_visits DESC
-LIMIT 1;
- 
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4; 
+EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
