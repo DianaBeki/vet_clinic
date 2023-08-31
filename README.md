@@ -125,7 +125,7 @@ To run tests, run the following command:
 👤 **Diana Beki**
 - GitHub: [@Github](https://github.com/DianaBeki)
 - Twitter: [@Twitter](https://twitter.com/home)
-- LinkedIn: [@Andry Narson Rabedesana](https://www.linkedin.com/in/diana-beki/)
+- LinkedIn: [@LinkedIn](https://www.linkedin.com/in/diana-beki/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
